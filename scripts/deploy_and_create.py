@@ -12,3 +12,4 @@ def main():
     print(
         f"Awesome, you can view your NFT at {OPENSEA_URL.format(simple_collectible.address, simple_collectible.tokenCounter() - 1)}"
     )
+    print("Please wait up to 20 minutes, and hit the refresh metadata button.")
