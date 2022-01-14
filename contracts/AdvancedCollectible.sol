@@ -18,6 +18,7 @@ contract AdvancedCollectible is ERC721, VRFConsumerBase {
         SHIBA_INU,
         ST_BERNAND
     }
+    mapping(uint256 => Breed) tokenIdToBreed;
 
     constructor(
         address _vrfCoordinator,
@@ -39,5 +40,14 @@ contract AdvancedCollectible is ERC721, VRFConsumerBase {
         returns (bytes32)
     {
         bytes32 requestId = requestRandomness(keyhash, fee);
+    }
+
+    function fulfillRandomness(bytes32 requestId, uint256 randomNumber)
+        internal
+        override
+    {
+        Breed breed = Breed(randomNumber % 3);
+        uint256 newTokenId = tokenCounter;
+        tokenIdToBreed[newTokenId] = breed;
     }
 }
