@@ -13,6 +13,11 @@ contract AdvancedCollectible is ERC721, VRFConsumerBase {
     uint256 public tokenCounter;
     bytes32 public keyhash;
     uint256 public fee;
+    enum Breed {
+        PUG,
+        SHIBA_INU,
+        ST_BERNAND
+    }
 
     constructor(
         address _vrfCoordinator,
@@ -27,5 +32,12 @@ contract AdvancedCollectible is ERC721, VRFConsumerBase {
         tokenCounter = 0;
         keyhash = _keyHash;
         fee = _fee;
+    }
+
+    function createCollectible(string memory tokenURI)
+        public
+        returns (bytes32)
+    {
+        bytes32 requestId = requestRandomness(keyhash, fee);
     }
 }
