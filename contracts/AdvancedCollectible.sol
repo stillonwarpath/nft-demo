@@ -50,7 +50,6 @@ contract AdvancedCollectible is ERC721, VRFConsumerBase {
         tokenIdToBreed[newTokenId] = breed;
         address owner = requestIdToSender[requestId];
         _safeMint(owner, newTokenId);
-        // _setTokenURI(newTokenId, tokenURI);
         tokenCounter = tokenCounter + 1;
     }
 
@@ -60,5 +59,6 @@ contract AdvancedCollectible is ERC721, VRFConsumerBase {
             _isApprovedOrOwner(_msgSender(), tokenId),
             "ERC721: caller is not owner nor approved"
         );
+        _setTokenURI(tokenId, _tokenURI);
     }
 }
