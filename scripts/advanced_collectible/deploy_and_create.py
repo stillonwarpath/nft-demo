@@ -13,8 +13,8 @@ def deploy_and_create():
     # Rinkeby
     account = get_account()
     advanced_collectible = AdvancedCollectible.deploy(
-        get_contract("vrf_coordinator"),
-        get_contract("link_token"),
+        get_contract("vrf_coordinator").address,
+        get_contract("link_token").address,
         config["networks"][network.show_active()]["keyhash"],
         config["networks"][network.show_active()]["fee"],
         {"from": account},
