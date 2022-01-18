@@ -13,7 +13,11 @@ def main():
         metadata_file_name = (
             f"./metadata/{network.show_active()}/{token_id}-{breed}.json"
         )
+        collectible_metadata = metadata_template
         if Path(metadata_file_name).exists():
             print(f"{metadata_file_name} already exists! Delete it to overwrite")
         else:
             print(f"Creating Metadata file: {metadata_file_name}")
+            collectible_metadata["name"] = breed
+            collectible_metadata["description"] = f"An adorable {breed} pup!"
+            print(collectible_metadata)
