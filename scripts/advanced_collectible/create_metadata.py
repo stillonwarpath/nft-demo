@@ -2,6 +2,7 @@ from brownie import AdvancedCollectible, network
 from scripts.helpful_scripts import get_breed
 from metadata.sample_metadata import metadata_template
 from pathlib import Path
+import requests
 
 
 def main():
@@ -28,4 +29,12 @@ def main():
 def upload_to_ipfs(filepath):
     with Path(filepath).open("rb") as fp:
         image_binary = fp.read()
-        # Upload stuff...
+        ipfs_url = "http://127.0.0.1:5001"
+        endpoint = "/api/v0/add"
+        response = requests.post( ipfs_url+endpoint, files="file": image_binary)
+        ipfs_hash = response.json()["Hash"]
+        # "./img/0-PUG.png" -> "PUG.png"
+        filename = filepath.split("/")[-1:][0]
+        image_uri = f"https://ipfs.io/ipfs/{ipfs_hash}?filename={filename}"
+        print(image_uri)
+        return image_uri
