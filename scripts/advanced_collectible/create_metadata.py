@@ -1,6 +1,7 @@
 from brownie import AdvancedCollectible, network
 from scripts.helpful_scripts import get_breed
 from metadata.sample_metadata import metadata_template
+from pathlib import Path
 
 
 def main():
@@ -12,4 +13,7 @@ def main():
         metadata_file_name = (
             f"./metadata/{network.show_active()}/{token_id}-{breed}.json"
         )
-        print(metadata_file_name)
+        if Path(metadata_file_name).exists():
+            print(f"{metadata_file_name} already exists! Delete it to overwrite")
+        else:
+            print(f"Creating Metadata file: {metadata_file_name}")
