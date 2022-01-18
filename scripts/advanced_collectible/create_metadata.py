@@ -26,4 +26,6 @@ def main():
 
 
 def upload_to_ipfs(filepath):
-    pass
+    with Path(filepath).open("rb") as fp:
+        image_binary = fp.read()
+        # Upload stuff...
