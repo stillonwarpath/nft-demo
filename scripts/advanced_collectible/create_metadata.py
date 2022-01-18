@@ -20,4 +20,10 @@ def main():
             print(f"Creating Metadata file: {metadata_file_name}")
             collectible_metadata["name"] = breed
             collectible_metadata["description"] = f"An adorable {breed} pup!"
-            print(collectible_metadata)
+            image_path = "./img/" + breed.lower().replace("_", "-") + ".png"
+            # image_uri = upload_to_ipfs(image_path)
+            # collectible_metadata["image"] = image_uri
+
+
+def upload_to_ipfs(filepath):
+    pass
