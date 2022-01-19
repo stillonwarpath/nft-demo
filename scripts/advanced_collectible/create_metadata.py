@@ -22,7 +22,7 @@ def main():
             collectible_metadata["name"] = breed
             collectible_metadata["description"] = f"An adorable {breed} pup!"
             image_path = "./img/" + breed.lower().replace("_", "-") + ".png"
-            # image_uri = upload_to_ipfs(image_path)
+            image_uri = upload_to_ipfs(image_path)
             # collectible_metadata["image"] = image_uri
 
 
@@ -31,7 +31,7 @@ def upload_to_ipfs(filepath):
         image_binary = fp.read()
         ipfs_url = "http://127.0.0.1:5001"
         endpoint = "/api/v0/add"
-        response = requests.post( ipfs_url+endpoint, files="file": image_binary)
+        response = requests.post(ipfs_url + endpoint, files={"file": image_binary})
         ipfs_hash = response.json()["Hash"]
         # "./img/0-PUG.png" -> "PUG.png"
         filename = filepath.split("/")[-1:][0]
